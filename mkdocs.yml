@@ -1,12 +1,12 @@
-site_name: PyTeRe
-repo_url: "https://github.com/astariul/pytere"
-repo_name: "astariul/pytere"
+site_name: Oblique
+repo_url: "https://github.com/astariul/oblique"
+repo_name: "astariul/oblique"
 
 theme:
   name: material
   custom_dir: docs/mkdocs
-  logo: "assets/flame.svg"
-  favicon: "assets/flame.svg"
+  logo: "assets/slash.svg"
+  favicon: "assets/slash.svg"
   features:
     - navigation.sections
   palette:
