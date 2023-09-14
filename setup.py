@@ -9,7 +9,9 @@ with open("oblique/__init__.py") as f:
     v = [line for line in f if line.startswith("__version__")][0].split('"')[1]
 
 
-reqs = []
+reqs = [
+    "omegaconf~=2.3",
+]
 
 extras_require = {
     "test": ["pytest~=7.0", "pytest-cov~=3.0", "coverage-badge~=1.0"],

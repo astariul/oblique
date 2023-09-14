@@ -3,14 +3,6 @@
 
 __version__ = "1.0.0.dev0"
 
+# isort: off
 
-def is_odd(x: float):
-    """Function checking if a number is odd.
-
-    Args:
-        x (float): Number to check.
-
-    Returns:
-        bool: True if the number is odd, False otherwise.
-    """
-    return x % 2 == 1
+from .configuration import config
