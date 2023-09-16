@@ -10,7 +10,10 @@ with open("oblique/__init__.py") as f:
 
 
 reqs = [
+    "fastapi[all]~=0.103",
     "omegaconf~=2.3",
+    "sqlalchemy~=2.0",
+    "jinjax~=0.25",
 ]
 
 extras_require = {
@@ -41,4 +44,5 @@ setuptools.setup(
     python_requires=">=3.8",
     install_requires=reqs,
     extras_require=extras_require,
+    entry_points={"console_scripts": ["oblique=oblique.app:serve"]},
 )
