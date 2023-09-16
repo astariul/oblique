@@ -24,6 +24,7 @@ class Release(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     version = Column(String, nullable=False)
+    date = Column(DateTime)
     is_yanked = Column(Boolean, default=False)
     package_id = Column(Integer, ForeignKey("packages.id", ondelete="CASCADE"))
 
