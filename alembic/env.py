@@ -1,13 +1,13 @@
+"""Configuration for Alembic."""
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
-from alembic import context
+from sqlalchemy import engine_from_config, pool
 
 import oblique.database.models  # noqa: F401   (Populate Base)
-from oblique import config as oblique_config	
+from alembic import context
+from oblique import config as oblique_config
 from oblique.database import Base
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
