@@ -1,11 +1,11 @@
 """Main file, containing the FastAPI app definition and where the routes are declared."""
 import uvicorn
 from fastapi import Depends, FastAPI, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from jinjax import Catalog
 from sqlalchemy.orm import Session
 
-from oblique import COMPONENTS_DIR, __version__, config
+from oblique import ASSETS_DIR, COMPONENTS_DIR, __version__, config
 from oblique.core import UnknownPackageException, get_package_info
 from oblique.database import SessionLocal, crud
 
@@ -41,6 +41,12 @@ async def browser_exception_handler(request, exc):
 async def home():
     """Main route, sending the home page."""
     return catalog.render("HomePage")
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    """Favicon."""
+    return FileResponse(ASSETS_DIR / "logo.svg")
 
 
 @app.get("/search", response_class=HTMLResponse)
