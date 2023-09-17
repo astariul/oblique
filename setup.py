@@ -17,6 +17,7 @@ reqs = [
 ]
 
 extras_require = {
+    "admin": ["alembic~=1.12"],
     "test": ["pytest~=7.0", "pytest-cov~=4.1", "coverage-badge~=1.0"],
     "hook": ["pre-commit~=3.0"],
     "lint": ["black~=23.1", "ruff~=0.0.272"],
