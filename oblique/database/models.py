@@ -1,5 +1,5 @@
 """Declaration of the DB model."""
-from sqlalchemy import Boolean, Column, DateTime, Float, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from oblique.database import Base
@@ -14,7 +14,7 @@ class Package(Base):
     last_updated = Column(DateTime)
     name = Column(String, unique=True, index=True)
 
-    releases = relationship("Release", back_populates="integration", passive_deletes=True)
+    releases = relationship("Release", back_populates="package", passive_deletes=True)
 
 
 class Release(Base):
