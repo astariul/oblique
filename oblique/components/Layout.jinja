@@ -1,0 +1,48 @@
+{#def title, background=True #}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+    <title>{{ title }}</title>
+
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+    <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                fontFamily: {
+                    sans: ["Roboto", "sans-serif"],
+                    body: ["Roboto", "sans-serif"],
+                    mono: ["ui-monospace", "monospace"],
+                },
+            },
+                corePlugins: {
+                preflight: false,
+            },
+        };
+    </script>
+</head>
+
+<body>
+    {% if background %}
+        <div class="flex justify-center items-center min-h-screen bg-gradient-to-tr from-green-300 to-teal-400">
+            <div class="block rounded-lg bg-white md:w-2/3 xl:w-1/2 2xl:w-1/3 absolute top-[0%] sm:top-[5%] md:top-[12%] lg:top-[20%] p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                {{ content }}
+            </div>
+        </div>
+    {% else %}
+        {{ content }}
+    {% endif %}
+</body>
+
+</html>
