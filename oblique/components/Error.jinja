@@ -1,0 +1,13 @@
+{#def status_code=404, error_msg="Sorry, we couldn't find this page", btn_msg="Homepage" #}
+
+<Layout title="Oblique">
+    <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+        <div class="max-w-md text-center">
+            <h2 class="mb-8 font-extrabold text-9xl text-gray-400">
+                <span class="sr-only">Error</span>{{ status_code }}
+            </h2>
+            <p class="text-2xl font-semibold md:text-3xl mb-8">{{ error_msg }}</p>
+            <a rel="noopener noreferrer" href="/" class="px-8 py-3 font-semibold rounded shadow-md bg-teal-500 hover:bg-teal-600 focus:bg-teal-600 text-white active:bg-teal-700 active:shadow-lg">{{ btn_msg }}</a>
+        </div>
+    </div>
+</Layout>

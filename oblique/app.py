@@ -1,6 +1,6 @@
 """Main file, containing the FastAPI app definition and where the routes are declared."""
 import uvicorn
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from jinjax import Catalog
 from sqlalchemy.orm import Session
@@ -29,6 +29,14 @@ def get_db() -> SessionLocal:
         db.close()
 
 
+@app.exception_handler(HTTPException)
+async def browser_exception_handler(request, exc):
+    """Define the exception handler for HTML exceptions."""
+    return HTMLResponse(
+        status_code=exc.status_code, content=catalog.render("Error", status_code=exc.status_code, error_msg=exc.detail)
+    )
+
+
 @app.get("/", response_class=HTMLResponse)
 async def home():
     """Main route, sending the home page."""
@@ -49,6 +57,14 @@ async def search(pkg: str, db: Session = Depends(get_db)):
         )
     except UnknownPackageException:
         return catalog.render("UnknownPackage", pkg_name=pkg)
+
+
+@app.route("/{full_path:path}")
+async def unknown_path(request: Request):
+    """Catch-all route, if the user tries to access an unknown page, we display
+    a 404.
+    """
+    raise HTTPException(status_code=404, detail="Sorry, we couldn't find this page.")
 
 
 def serve():
