@@ -18,3 +18,8 @@ repos:
     rev: v0.0.272
     hooks:
       - id: ruff
+  - repo: https://github.com/Riverside-Healthcare/djLint
+    rev: v1.33.0
+    hooks:
+      - id: djlint-jinja
+      - id: djlint-reformat-jinja
