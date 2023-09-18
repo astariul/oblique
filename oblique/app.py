@@ -1,45 +1,54 @@
-"""Main file, containing the FastAPI app definition and where the routes are declared."""
-import uvicorn
-from fastapi import Depends, FastAPI, HTTPException, Request
+"""Main file, containing the FastAPI web-app definition and its routes."""
+from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse
 from jinjax import Catalog
 from sqlalchemy.orm import Session
 
-from oblique import ASSETS_DIR, COMPONENTS_DIR, __version__, config
-from oblique.api import app as api_app
+from oblique import ASSETS_DIR, COMPONENTS_DIR
 from oblique.core import UnknownPackageException, get_package_info
-from oblique.database import crud
 from oblique.dependencies import get_db
 
 
-app = FastAPI(title="Oblique", version=__version__, docs_url=None, redoc_url=None)
-app.mount("/api", api_app)
+router = APIRouter()
 
 catalog = Catalog()
 catalog.add_folder(COMPONENTS_DIR)
 
 
-@app.exception_handler(HTTPException)
-async def browser_exception_handler(request, exc):
-    """Define the exception handler for HTML exceptions."""
+class HTMLException(HTTPException):
+    """Exception raised by the web-app.
+
+    Args:
+        status_code (int): HTTP code to return.
+        detail (str, optional): Error description. Defaults to `None`.
+    """
+
+    pass
+
+
+async def html_exception_handler(request: Request, exc: HTTPException):
+    """Define the exception handler for HTMLException."""
     return HTMLResponse(
         status_code=exc.status_code, content=catalog.render("Error", status_code=exc.status_code, error_msg=exc.detail)
     )
 
 
-@app.get("/", response_class=HTMLResponse)
+handler = (HTMLException, html_exception_handler)
+
+
+@router.get("/", response_class=HTMLResponse)
 async def home():
     """Main route, sending the home page."""
     return catalog.render("HomePage")
 
 
-@app.get("/favicon.ico", include_in_schema=False)
+@router.get("/favicon.ico", include_in_schema=False)
 async def favicon():
     """Favicon."""
     return FileResponse(ASSETS_DIR / "logo.svg")
 
 
-@app.get("/search", response_class=HTMLResponse)
+@router.get("/search", response_class=HTMLResponse)
 async def search(pkg: str, db: Session = Depends(get_db)):
     """Search route, to display the search results."""
     try:
@@ -55,21 +64,9 @@ async def search(pkg: str, db: Session = Depends(get_db)):
         return catalog.render("UnknownPackage", pkg_name=pkg)
 
 
-@app.route("/{full_path:path}")
+@router.route("/{full_path:path}")
 async def unknown_path(request: Request):
     """Catch-all route, if the user tries to access an unknown page, we display
     a 404.
     """
-    raise HTTPException(status_code=404, detail="Sorry, we couldn't find this page.")
-
-
-def serve():
-    """The function called to run the server.
-
-    It will simply run the FastAPI app. Also, if the selected DB is in-memory,
-    it will ensure the tables are created.
-    """
-    if config.db == "memory":
-        crud.create_tables()
-
-    uvicorn.run(app, host=config.host, port=config.port)
+    raise HTMLException(status_code=404, detail="Sorry, we couldn't find this page.")

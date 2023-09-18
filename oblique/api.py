@@ -1,14 +1,33 @@
 """File containing the routes of the API."""
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi.exception_handlers import http_exception_handler
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from oblique import __version__
 from oblique.core import UnknownPackageException, get_package_info
 from oblique.dependencies import get_db
 
 
-app = FastAPI(title="Oblique API", version=__version__, redoc_url=None)
+router = APIRouter()
+
+
+class APIException(HTTPException):
+    """Exception raised by the API.
+
+    Args:
+        status_code (int): HTTP code to return.
+        detail (str, optional): Error description. Defaults to `None`.
+    """
+
+    pass
+
+
+async def api_exception_handler(request: Request, exc: HTTPException):
+    """Define the exception handler for APIException."""
+    return await http_exception_handler(request, exc)
+
+
+handler = (APIException, api_exception_handler)
 
 
 class PackageParameters(BaseModel):
@@ -17,7 +36,7 @@ class PackageParameters(BaseModel):
     pkg_name: str
 
 
-@app.post("/pkg_infos")
+@router.post("/pkg_infos")
 def get_pkg_infos(parameters: PackageParameters, db: Session = Depends(get_db)):
     """Route to get the informations of the package requested.
 
@@ -34,4 +53,4 @@ def get_pkg_infos(parameters: PackageParameters, db: Session = Depends(get_db)):
             "n_versions_yanked": n_versions_yanked,
         }
     except UnknownPackageException:
-        raise HTTPException(status_code=404, detail="This package was not published to PyPi index.")
+        raise APIException(status_code=404, detail="This package was not published to PyPi index.")
