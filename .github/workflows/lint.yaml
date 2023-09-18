@@ -18,3 +18,7 @@ jobs:
         run: |
           pip install ruff
           ruff check .
+      - name: Check HTML lint with djlint
+        run: |
+          pip install djlint
+          djlint . --check
