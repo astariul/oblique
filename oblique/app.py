@@ -6,27 +6,17 @@ from jinjax import Catalog
 from sqlalchemy.orm import Session
 
 from oblique import ASSETS_DIR, COMPONENTS_DIR, __version__, config
+from oblique.api import app as api_app
 from oblique.core import UnknownPackageException, get_package_info
-from oblique.database import SessionLocal, crud
+from oblique.database import crud
+from oblique.dependencies import get_db
 
 
-app = FastAPI(title="Oblique", version=__version__, redoc_url=None)
+app = FastAPI(title="Oblique", version=__version__, docs_url=None, redoc_url=None)
+app.mount("/api", api_app)
 
 catalog = Catalog()
 catalog.add_folder(COMPONENTS_DIR)
-
-
-def get_db() -> SessionLocal:
-    """FastAPI dependency to create a DB Session.
-
-    Yields:
-        SessionLocal: DB Session.
-    """
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @app.exception_handler(HTTPException)
