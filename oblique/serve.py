@@ -10,6 +10,19 @@ from oblique.app import router as app_router
 from oblique.database import crud
 
 
+def get_main_app():
+    """Create the main FastAPI app, which is made of the web-app and the API."""
+    main_app = FastAPI(title="Oblique", version=__version__, redoc_url=None)
+
+    main_app.add_exception_handler(*api_handler)
+    main_app.add_exception_handler(*app_handler)
+
+    main_app.include_router(app_router, tags=["HTML"])
+    main_app.include_router(api_router, prefix="/api", tags=["API"])
+
+    return main_app
+
+
 def serve():
     """The function called to run the server.
 
@@ -19,12 +32,5 @@ def serve():
     if config.db == "memory":
         crud.create_tables()
 
-    root_app = FastAPI(title="Oblique", version=__version__, redoc_url=None)
-
-    root_app.add_exception_handler(*api_handler)
-    root_app.add_exception_handler(*app_handler)
-
-    root_app.include_router(app_router, tags=["HTML"])
-    root_app.include_router(api_router, prefix="/api", tags=["API"])
-
-    uvicorn.run(root_app, host=config.host, port=config.port)
+    main_app = get_main_app()
+    uvicorn.run(main_app, host=config.host, port=config.port)
