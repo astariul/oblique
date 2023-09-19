@@ -31,9 +31,16 @@ handler = (APIException, api_exception_handler)
 
 
 class PackageParameters(BaseModel):
-    """Parameters to pass to identify a package."""
+    """Parameters to pass to identify a package.
+
+    * pkg_name (str): Name of the package to get.
+    * force_refresh (bool, optional): If set to `True`, the local cache is
+        ignored and the PyPi API is called. Note that it might be slower.
+        Defaults to `False`.
+    """
 
     pkg_name: str
+    force_refresh: bool = False
 
 
 @router.post("/pkg_infos")
@@ -46,7 +53,9 @@ def get_pkg_infos(parameters: PackageParameters, db: Session = Depends(get_db)):
      * Number of versions yanked
     """
     try:
-        last_release, n_versions, n_versions_yanked = get_package_info(db, parameters.pkg_name, human_readable=False)
+        last_release, n_versions, n_versions_yanked = get_package_info(
+            db, parameters.pkg_name, human_readable=False, force_refresh=parameters.force_refresh
+        )
         return {
             "last_release": last_release,
             "n_versions": n_versions,

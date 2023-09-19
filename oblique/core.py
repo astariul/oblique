@@ -112,7 +112,9 @@ def get_stats_for(db: Session, db_package: models.Package, human_readable: bool 
     return last_release, n_versions, n_versions_yanked
 
 
-def get_package_info(db: Session, pkg_name: str, human_readable: bool = True) -> Tuple[str, int, int]:
+def get_package_info(
+    db: Session, pkg_name: str, human_readable: bool = True, force_refresh: bool = False
+) -> Tuple[str, int, int]:
     """Main function to retrieve informations about a PyPi package.
 
     This function will first check if the informations is cached locally. If
@@ -126,6 +128,9 @@ def get_package_info(db: Session, pkg_name: str, human_readable: bool = True) ->
         human_readable (bool, optional): If set to `True`, dates are returned
             in human-readable format (like `3 days ago` for example). If set to
             `False`, dates are returned in ISO 8601. Defaults to `True`.
+        force_refresh (bool, optional): If set to `True`, the local cache is
+            ignored and the PyPi API is called. Note that it might be slower.
+            Defaults to `False`.
 
     Returns:
         Tuple[str, int, int]: The statistics for the package. This is a tuple
@@ -137,12 +142,14 @@ def get_package_info(db: Session, pkg_name: str, human_readable: bool = True) ->
     # Check the database to see if we already have that package's infos locally cached
     db_package = crud.get_package_by_name(db, pkg_name)
 
-    if db_package is None or db_package.last_updated < datetime.now() - CACHE_TTL:
+    pkg_not_found_locally = bool(db_package is None)
+    cache_outdated = bool(db_package.last_updated < datetime.now() - CACHE_TTL)
+    if pkg_not_found_locally or cache_outdated or force_refresh:
         # This package is not cached locally, or the cache is stale
         # Call the PyPi API to retrieve its informations and update our local cache
         releases = get_package_info_from_pypi(pkg_name)
 
-        if db_package is not None:
+        if pkg_not_found_locally:
             db_package = crud.update_package(db, db_package, releases)
         else:
             db_package = crud.create_package(db, pkg_name)
