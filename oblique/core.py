@@ -65,13 +65,16 @@ def get_package_info_from_pypi(pkg_name: str) -> List[Tuple[str, datetime, bool]
         raise PyPiAPIException("PyPi API unreachable")
 
 
-def get_stats_for(db: Session, db_package: models.Package) -> Tuple[str, int, int]:
+def get_stats_for(db: Session, db_package: models.Package, human_readable: bool = True) -> Tuple[str, int, int]:
     """Function that retrieve the statistics of a package stored in the DB.
 
     Args:
         db (Session): DB Session.
         db_package (models.Package): The DB object corresponding to the package
             we want to extract statistics from.
+        human_readable (bool, optional): If set to `True`, dates are returned
+            in human-readable format (like `3 days ago` for example). If set to
+            `False`, dates are returned in ISO 8601. Defaults to `True`.
 
     Raises:
         UnknownPackageException: Exception raised if the package is not a
@@ -94,19 +97,22 @@ def get_stats_for(db: Session, db_package: models.Package) -> Tuple[str, int, in
         raise UnknownPackageException()
 
     # Format the last_release to be human-friendly
-    td = datetime.utcnow() - last_release.date
-    if td < timedelta(hours=24):
-        h = max(td.seconds // 3600, 1)
-        last_release = f"{h}h ago"
-    elif td < timedelta(days=30):
-        last_release = f"{td.days} day{'s' if td.days > 1 else ''} ago"
+    if human_readable:
+        td = datetime.utcnow() - last_release.date
+        if td < timedelta(hours=24):
+            h = max(td.seconds // 3600, 1)
+            last_release = f"{h}h ago"
+        elif td < timedelta(days=30):
+            last_release = f"{td.days} day{'s' if td.days > 1 else ''} ago"
+        else:
+            last_release = f"{last_release.date:%d %b %Y}"
     else:
-        last_release = f"{last_release.date:%d %b %Y}"
+        last_release = last_release.date
 
     return last_release, n_versions, n_versions_yanked
 
 
-def get_package_info(db: Session, pkg_name: str) -> Tuple[str, int, int]:
+def get_package_info(db: Session, pkg_name: str, human_readable: bool = True) -> Tuple[str, int, int]:
     """Main function to retrieve informations about a PyPi package.
 
     This function will first check if the informations is cached locally. If
@@ -117,6 +123,9 @@ def get_package_info(db: Session, pkg_name: str) -> Tuple[str, int, int]:
     Args:
         db (Session): DB Session.
         pkg_name (str): Name of the package for which we want data.
+        human_readable (bool, optional): If set to `True`, dates are returned
+            in human-readable format (like `3 days ago` for example). If set to
+            `False`, dates are returned in ISO 8601. Defaults to `True`.
 
     Returns:
         Tuple[str, int, int]: The statistics for the package. This is a tuple
@@ -140,4 +149,4 @@ def get_package_info(db: Session, pkg_name: str) -> Tuple[str, int, int]:
             crud.create_releases(db, releases, db_package.id)
 
     # Retrieve the numbers we are interested in
-    return get_stats_for(db, db_package)
+    return get_stats_for(db, db_package, human_readable=human_readable)

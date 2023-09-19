@@ -46,7 +46,7 @@ def get_pkg_infos(parameters: PackageParameters, db: Session = Depends(get_db)):
      * Number of versions yanked
     """
     try:
-        last_release, n_versions, n_versions_yanked = get_package_info(db, parameters.pkg_name)
+        last_release, n_versions, n_versions_yanked = get_package_info(db, parameters.pkg_name, human_readable=False)
         return {
             "last_release": last_release,
             "n_versions": n_versions,
