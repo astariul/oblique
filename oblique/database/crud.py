@@ -161,6 +161,6 @@ def get_n_versions_yanked_of(db: Session, db_package: models.Package) -> int:
     return (
         db.query(models.Release)
         .filter(models.Release.package_id == db_package.id)
-        .filter(models.Release.is_yanked is True)
+        .filter(models.Release.is_yanked.is_(True))
         .count()
     )
