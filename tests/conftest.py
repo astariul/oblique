@@ -13,7 +13,7 @@ import oblique  # noqa: E402
 from oblique.database import SessionLocal, crud  # noqa: E402
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def db():
     # Create the tables for the in-memory DB
     crud.create_tables()
