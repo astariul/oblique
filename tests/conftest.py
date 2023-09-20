@@ -10,11 +10,23 @@ os.environ["OBLIQUE_DB"] = "memory"
 
 
 import oblique  # noqa: E402
+from oblique.database import SessionLocal, crud  # noqa: E402
+
+
+@pytest.fixture(scope="module")
+def db():
+    # Create the tables for the in-memory DB
+    crud.create_tables()
+
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 @pytest.fixture
-def client():
-    # Create the tables for the in-memory DB
-    oblique.database.crud.create_tables()
+def client(db):
+    # Use DB fixture to ensure the tables were created
 
     yield TestClient(oblique.serve.get_main_app())
