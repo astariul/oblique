@@ -142,14 +142,12 @@ def get_package_info(
     # Check the database to see if we already have that package's infos locally cached
     db_package = crud.get_package_by_name(db, pkg_name)
 
-    pkg_not_found_locally = bool(db_package is None)
-    cache_outdated = bool(db_package.last_updated < datetime.now() - CACHE_TTL)
-    if pkg_not_found_locally or cache_outdated or force_refresh:
+    if db_package is None or db_package.last_updated < datetime.utcnow() - CACHE_TTL or force_refresh:
         # This package is not cached locally, or the cache is stale
         # Call the PyPi API to retrieve its informations and update our local cache
         releases = get_package_info_from_pypi(pkg_name)
 
-        if pkg_not_found_locally:
+        if db_package is not None:
             db_package = crud.update_package(db, db_package, releases)
         else:
             db_package = crud.create_package(db, pkg_name)
