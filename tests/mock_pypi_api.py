@@ -54,11 +54,11 @@ def mock_get(url: str):
 
     pkg_name = z.group(1)
 
-    if pkg_name == "transformers":
+    if pkg_name.startswith("transformers"):
         return ResponseOk()
-    elif pkg_name == "lisduyfg":
+    elif pkg_name == "lisduyfg" or pkg_name.startswith("unknown"):
         return Response404()
-    elif pkg_name == "redirected":
+    elif pkg_name == "redirected" or pkg_name.startswith("crashapi"):
         return Response301()
     else:
         assert False, f"Oblique is trying to access package `{pkg_name}`, which is not mocked. Can't run the test."

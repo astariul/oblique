@@ -135,3 +135,72 @@ def test_get_stats_format_x_hours_ago(db, pkg_release_8h_ago):
     assert last_release == "8h ago"
     assert n_versions == 1
     assert n_versions_yanked == 0
+
+
+def test_get_package_info_new_package(db):
+    last_release, n_versions, n_versions_yanked = core.get_package_info(db, "transformers#1")
+
+    assert last_release == "09 Aug 2021"
+    assert n_versions == 3
+    assert n_versions_yanked == 1
+
+
+def test_get_package_info_cached_package(db):
+    # Create a package in our local cache
+    db_pkg = crud.create_package(db, "crashapi#1")
+    crud.create_releases(db, [("v1.2.10", isoparse("2022-07-09T14:27:16"), False)], db_pkg.id)
+
+    # If `get_package_info` calls the API, make sure to crash the test
+    # (it shouldn't call the API since it's cached locally)
+    last_release, n_versions, n_versions_yanked = core.get_package_info(db, "crashapi#1")
+
+    assert last_release == "09 Jul 2022"
+    assert n_versions == 1
+    assert n_versions_yanked == 0
+
+
+@pytest.fixture
+def temporary_reduce_ttl():
+    # Monkey-patch CACHE_TTL to something smaller, for tests going over
+    # this limit, without waiting
+    old_ttl = core.CACHE_TTL
+    core.CACHE_TTL = timedelta()
+
+    yield None
+
+    # Monkey-patch back to normal value after the test
+    core.CACHE_TTL = old_ttl
+
+
+def test_get_package_info_ttl_exceeded(db, temporary_reduce_ttl):
+    # Create a package in our local cache, with no release
+    db_pkg = crud.create_package(db, "transformers#2")
+    crud.create_releases(db, [], db_pkg.id)
+
+    # Since the TTL is exceeded, the API should get called with fresh data
+    last_release, n_versions, n_versions_yanked = core.get_package_info(db, "transformers#2")
+
+    assert last_release == "09 Aug 2021"
+    assert n_versions == 3
+    assert n_versions_yanked == 1
+
+
+def test_get_package_info_force_refresh(db):
+    # Create a package in our local cache, with no release
+    db_pkg = crud.create_package(db, "transformers#3")
+    crud.create_releases(db, [], db_pkg.id)
+
+    # Since force refresh is set to `True`, the API should get called with fresh data
+    last_release, n_versions, n_versions_yanked = core.get_package_info(db, "transformers#3", force_refresh=True)
+
+    assert last_release == "09 Aug 2021"
+    assert n_versions == 3
+    assert n_versions_yanked == 1
+
+
+def test_get_package_info_non_human_readable(db):
+    last_release, n_versions, n_versions_yanked = core.get_package_info(db, "transformers#4", human_readable=False)
+
+    assert last_release == isoparse("2021-08-09T14:27:16")
+    assert n_versions == 3
+    assert n_versions_yanked == 1
