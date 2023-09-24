@@ -36,6 +36,17 @@ async def html_exception_handler(request: Request, exc: HTTPException):
 handler = (HTMLException, html_exception_handler)
 
 
+async def htmx(request: Request):
+    """Dependency, to make sure the received request is a HTMX request.
+    If it's not a HTMX request, a 404 is returned.
+
+    Args:
+        request (Request): Request to check.
+    """
+    if "hx-request" not in request.headers or request.headers["hx-request"] != "true":
+        raise HTMLException(status_code=404, detail="Sorry, we couldn't find this page.")
+
+
 @router.get("/", response_class=HTMLResponse)
 async def home():
     """Main route, sending the home page."""
@@ -49,7 +60,7 @@ async def favicon():
 
 
 @router.get("/search", response_class=HTMLResponse)
-async def search(pkg: str, db: Session = Depends(get_db)):
+async def search(pkg: str, db: Session = Depends(get_db), h: None = Depends(htmx)):
     """Search route, to display the search results."""
     try:
         last_release, n_versions, n_versions_yanked = get_package_info(db, pkg)
