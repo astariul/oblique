@@ -28,5 +28,4 @@ def db():
 @pytest.fixture
 def client(db):
     # Use DB fixture to ensure the tables were created
-
-    yield TestClient(oblique.serve.get_main_app())
+    yield TestClient(oblique.server.get_main_app())
