@@ -17,7 +17,7 @@ def test_unknown_route(client):
 
 def test_search_basic(client, db):
     pkg = "transformers_app_1"
-    r = client.get(f"/search?pkg={pkg}")
+    r = client.get(f"/search?pkg={pkg}", headers={"hx-request": "true"})
 
     assert r.status_code == 200
     assert pkg in r.text
@@ -28,13 +28,21 @@ def test_search_basic(client, db):
 
 def test_search_unknown(client, db):
     pkg = "unknown_app_1"
-    r = client.get(f"/search?pkg={pkg}")
+    r = client.get(f"/search?pkg={pkg}", headers={"hx-request": "true"})
 
     assert r.status_code == 200
     assert pkg in r.text and "does not exist" in r.text
 
 
 def test_search_no_args(client, db):
-    r = client.get("/search")
+    r = client.get("/search", headers={"hx-request": "true"})
 
     assert r.status_code == 422
+
+
+def test_search_not_htmx(client, db):
+    # Without the right headers, this route should return a 404
+    pkg = "transformers_app_2"
+    r = client.get(f"/search?pkg={pkg}")
+
+    assert r.status_code == 404
