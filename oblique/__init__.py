@@ -10,4 +10,4 @@ __version__ = "1.0.0.dev0"
 # isort: off
 
 from .configuration import config  # noqa: E402
-from .serve import serve  # noqa: E402
+from .server import run  # noqa: E402

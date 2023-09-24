@@ -48,5 +48,5 @@ setuptools.setup(
     python_requires=">=3.9",
     install_requires=reqs,
     extras_require=extras_require,
-    entry_points={"console_scripts": ["oblique=oblique:serve"]},
+    entry_points={"console_scripts": ["oblique=oblique:run"]},
 )

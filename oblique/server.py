@@ -23,7 +23,7 @@ def get_main_app():
     return main_app
 
 
-def serve():
+def run():
     """The function called to run the server.
 
     It will simply run the FastAPI app. Also, if the selected DB is in-memory,
