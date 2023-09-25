@@ -35,10 +35,15 @@ markdown_extensions:
 
 nav:
   - Welcome: "index.md"
+  - "struct.md"
   - "features.md"
   - "usage.md"
   - Code reference:
-    - "code_ref.md"
+    - "code_ref_app.md"
+    - "code_ref_api.md"
+    - "code_ref_core.md"
+    - "code_ref_database.md"
+    - "code_ref_others.md"
 
 plugins:
   - search
