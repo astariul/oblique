@@ -9,20 +9,22 @@
       
       
       
-        <link rel="prev" href="../usage/">
+        <link rel="prev" href="../code_ref_app/">
       
+      
+        <link rel="next" href="../code_ref_core/">
       
       
       <link rel="icon" href="../assets/slash.svg">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
     
     
       
-        <title>oblique - Oblique</title>
+        <title>api.py - Oblique</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.72749a73.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.d451bc0e.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.a5377069.min.css">
@@ -77,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#oblique_1" class="md-skip">
+        <a href="#apipy" class="md-skip">
           Skip to content
         </a>
       
@@ -129,7 +131,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              oblique
+              api.py
             
           </span>
         </div>
@@ -286,11 +288,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../struct/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../features/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Features
+    Template features
   </span>
   
 
@@ -328,6 +349,9 @@
     
     
     
+    
+    
+      
       
     
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
@@ -335,10 +359,10 @@
         
         
         
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
-        
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -349,12 +373,32 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Code reference
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_ref_app/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    app.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -375,7 +419,7 @@
           
   
   <span class="md-ellipsis">
-    oblique
+    api.py
   </span>
   
 
@@ -386,7 +430,7 @@
         
   
   <span class="md-ellipsis">
-    oblique
+    api.py
   </span>
   
 
@@ -408,9 +452,69 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#oblique" class="md-nav__link">
-    oblique
+  <a href="#exception-handling" class="md-nav__link">
+    Exception handling
   </a>
+  
+    <nav class="md-nav" aria-label="Exception handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oblique.api.APIException" class="md-nav__link">
+    APIException
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oblique.api.api_exception_handler" class="md-nav__link">
+    api_exception_handler
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-models" class="md-nav__link">
+    Data models
+  </a>
+  
+    <nav class="md-nav" aria-label="Data models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oblique.api.PackageParameters" class="md-nav__link">
+    PackageParameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routes" class="md-nav__link">
+    Routes
+  </a>
+  
+    <nav class="md-nav" aria-label="Routes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oblique.api.get_pkg_infos" class="md-nav__link">
+    get_pkg_infos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -418,6 +522,66 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_ref_core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    core.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_ref_database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_ref_others/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Others
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -457,9 +621,69 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#oblique" class="md-nav__link">
-    oblique
+  <a href="#exception-handling" class="md-nav__link">
+    Exception handling
   </a>
+  
+    <nav class="md-nav" aria-label="Exception handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oblique.api.APIException" class="md-nav__link">
+    APIException
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oblique.api.api_exception_handler" class="md-nav__link">
+    api_exception_handler
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-models" class="md-nav__link">
+    Data models
+  </a>
+  
+    <nav class="md-nav" aria-label="Data models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oblique.api.PackageParameters" class="md-nav__link">
+    PackageParameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routes" class="md-nav__link">
+    Routes
+  </a>
+  
+    <nav class="md-nav" aria-label="Routes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oblique.api.get_pkg_infos" class="md-nav__link">
+    get_pkg_infos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -481,17 +705,17 @@
   
 
 
-<h1 id="oblique_1">oblique</h1>
+<h1 id="apipy">api.py</h1>
 
 
 <div class="doc doc-object doc-module">
 
 
 
-<a id="oblique"></a>
+
   <div class="doc doc-contents first">
   
-      <p>Root of the <code>oblique</code> package.</p>
+      <p>File containing the routes of the API.</p>
 
   
 
@@ -509,6 +733,243 @@
 
   </div>
 
+  </div>
+
+</div><h2 id="exception-handling">Exception handling</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="oblique.api.APIException"></a>
+  <div class="doc doc-contents first">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="fastapi.HTTPException">HTTPException</span></code></p>
+
+  
+      <p>Exception raised by the API.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>status_code</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>HTTP code to return.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>detail</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Error description. Defaults to <code>None</code>.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+            <details class="quote">
+              <summary>Source code in <code>oblique/api.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">APIException</span><span class="p">(</span><span class="n">HTTPException</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception raised by the API.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        status_code (int): HTTP code to return.</span>
+<span class="sd">        detail (str, optional): Error description. Defaults to `None`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="oblique.api.api_exception_handler"></a>
+  <div class="doc doc-contents first">
+  
+      <p>Define the exception handler for APIException.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>oblique/api.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">api_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exc</span><span class="p">:</span> <span class="n">HTTPException</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Define the exception handler for APIException.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">http_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">exc</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div><h2 id="data-models">Data models</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="oblique.api.PackageParameters"></a>
+  <div class="doc doc-contents first">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+  
+      <p>Parameters to pass to identify a package.</p>
+<ul>
+<li>pkg_name (str): Name of the package to get.</li>
+<li>force_refresh (bool, optional): If set to <code>True</code>, the local cache is
+    ignored and the PyPi API is called. Note that it might be slower.
+    Defaults to <code>False</code>.</li>
+</ul>
+
+            <details class="quote">
+              <summary>Source code in <code>oblique/api.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">PackageParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters to pass to identify a package.</span>
+
+<span class="sd">    * pkg_name (str): Name of the package to get.</span>
+<span class="sd">    * force_refresh (bool, optional): If set to `True`, the local cache is</span>
+<span class="sd">        ignored and the PyPi API is called. Note that it might be slower.</span>
+<span class="sd">        Defaults to `False`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">pkg_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">force_refresh</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="routes">Routes</h2>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="oblique.api.get_pkg_infos"></a>
+  <div class="doc doc-contents first">
+  
+      <p>Route to get the informations of the package requested.</p>
+
+<details class="these-informations-are-" open>
+  <summary>These informations are</summary>
+  <ul>
+<li>Last release date</li>
+<li>Number of versions released</li>
+<li>Number of versions yanked</li>
+</ul>
+</details>
+          <details class="quote">
+            <summary>Source code in <code>oblique/api.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/pkg_infos&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_pkg_infos</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="n">PackageParameters</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Route to get the informations of the package requested.</span>
+
+<span class="sd">    These informations are :</span>
+<span class="sd">     * Last release date</span>
+<span class="sd">     * Number of versions released</span>
+<span class="sd">     * Number of versions yanked</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">last_release</span><span class="p">,</span> <span class="n">n_versions</span><span class="p">,</span> <span class="n">n_versions_yanked</span> <span class="o">=</span> <span class="n">get_package_info</span><span class="p">(</span>
+            <span class="n">db</span><span class="p">,</span> <span class="n">parameters</span><span class="o">.</span><span class="n">pkg_name</span><span class="p">,</span> <span class="n">human_readable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_refresh</span><span class="o">=</span><span class="n">parameters</span><span class="o">.</span><span class="n">force_refresh</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;last_release&quot;</span><span class="p">:</span> <span class="n">last_release</span><span class="p">,</span>
+            <span class="s2">&quot;n_versions&quot;</span><span class="p">:</span> <span class="n">n_versions</span><span class="p">,</span>
+            <span class="s2">&quot;n_versions_yanked&quot;</span><span class="p">:</span> <span class="n">n_versions_yanked</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="k">except</span> <span class="n">UnknownPackageException</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;This package was not published to PyPi index.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
   </div>
 
 </div>
@@ -547,7 +1008,7 @@
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
       
     
   </body>
