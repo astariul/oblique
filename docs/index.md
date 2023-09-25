@@ -1,53 +1,38 @@
-# Pytere
+# Oblique
 
 ## Introduction
 
-Welcome to the documentation of the `pytere` package.
+Welcome to the documentation of `oblique`.
 
-`pytere` (**Py**thon **te**mplate **re**pository) is simply a template repository for python packages.
+`oblique` is a template repository, containing a small web-application using FastAPI and HTMX, to help you get started writting your own application / API.
 
-This full-fledged template provides you with everything you need (_documentation, unit-tests, code linting & formatting, pre-commit hooks, etc..._) so you can just focus on writing the code.
+`oblique` uses the following stack :
+
+* **`FastAPI`** for the web API
+* **`HTMX`** to have interactivity without JS
+* **`JinjaX`** for clean server-side components
+* **`TailwindCSS`** for component's design
+* **`SQLite`**, **`sqlalchemy`**, and **`alembic`** for the database
+* **`Docker`** of course
 
 If you want to use this template, follow the instructions at the [Usage](usage.md) page.
 
 ## Installation
 
-### Latest version
-
-You can install the latest version of the package directly from PyPi with :
-
-```bash
-pip install pytere
-```
-
-!!! hint
-    If you want to install directly from Github, run :
-    ```bash
-    pip install git+https://github.com/astariul/pytere.git
-    ```
-
-### Specific version
-
-You can install a specific version of the package (`0.1.0` in ths example) from PyPi with :
-
-```bash
-pip install pytere==0.1.0
-```
-
-!!! hint
-    If you want to install directly from Github, run :
-    ```bash
-    pip install git+https://github.com/astariul/pytere.git@v0.1.0
-    ```
-
 ### Local
 
-You can also clone the repository locally and install it manually :
+`oblique` isn't published as a package in PyPi. Install it locally by :
 
 ```bash
-git clone https://github.com/astariul/pytere.git
-cd pytere
+git clone https://github.com/astariul/oblique.git
+cd oblique
 pip install -e .
+```
+
+or :
+
+```bash
+pip install git+https://github.com/astariul/oblique.git
 ```
 
 ### Extra dependencies
@@ -63,13 +48,14 @@ Will install necessary dependencies for building the docs.
 !!! hint
     If you installed the package directly from github, run :
     ```bash
-    pip install "pytere[docs] @ git+https://github.com/astariul/pytere.git"
+    pip install "oblique[docs] @ git+https://github.com/astariul/oblique.git"
     ```
 
 ---
 
 List of extra dependencies :
 
+* **`admin`** : Dependencies for managing the database.
 * **`test`** : Dependencies for running unit-tests.
 * **`hook`** : Dependencies for running pre-commit hooks.
 * **`lint`** : Dependencies for running linters and formatters.
@@ -114,6 +100,13 @@ pytest
 
 !!! info
     Pre-commit hooks will not run the tests, but it will automatically update the coverage badge !
+
+!!! hint
+    To get the coverage report in HTML format, run :
+    ```bash
+    pytest --cov-report=html
+    ```
+    And then open the file `htmlcov/index.html` with your browser.
 
 ### Documentation
 
