@@ -54,9 +54,17 @@ docker run -p 9810:9810 -v ~/data:/oblique/data -e OBLIQUE_DB_PATH="/oblique/dat
 
 ## Run from the command line
 
-If you don’t have Docker, you can also install clothion locally and run it from the command line :
+If you don’t have Docker, you can also install `oblique` locally and run it from the command line :
 
 ```bash
 pip install -e .
 OBLIQUE_DB_PATH="~/data/oblique.sql" oblique
 ```
+
+!!! info
+    Note that if you use the command line instead of Docker, you need to build TailwindCSS yourself. You can do this by running :
+
+    ```bash
+    pip install pytailwindcss
+    tailwindcss -o oblique/static/tailwind.css --minify
+    ```
