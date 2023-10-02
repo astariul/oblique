@@ -15,6 +15,7 @@ reqs = [
     "sqlalchemy~=2.0",
     "jinjax~=0.25",
     "requests~=2.31",
+    "python-dateutil~=2.8",
 ]
 
 extras_require = {
