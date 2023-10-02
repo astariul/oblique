@@ -671,10 +671,17 @@
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">9810</span>:9810<span class="w"> </span>-v<span class="w"> </span>~/data:/oblique/data<span class="w"> </span>-e<span class="w"> </span><span class="nv">OBLIQUE_DB_PATH</span><span class="o">=</span><span class="s2">&quot;/oblique/data/oblique.sql&quot;</span><span class="w"> </span>oblique
 </code></pre></div>
 <h2 id="run-from-the-command-line">Run from the command line</h2>
-<p>If you don’t have Docker, you can also install clothion locally and run it from the command line :</p>
+<p>If you don’t have Docker, you can also install <code>oblique</code> locally and run it from the command line :</p>
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 <span class="nv">OBLIQUE_DB_PATH</span><span class="o">=</span><span class="s2">&quot;~/data/oblique.sql&quot;</span><span class="w"> </span>oblique
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>If you use the command line instead of Docker, you need to build TailwindCSS yourself. You can do this by running :</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pytailwindcss
+tailwindcss<span class="w"> </span>-o<span class="w"> </span>oblique/static/tailwind.css<span class="w"> </span>--minify
+</code></pre></div>
+</div>
 
 
 
