@@ -4,7 +4,7 @@ import pathlib
 
 COMPONENTS_DIR = pathlib.Path(__file__).parent.resolve() / "components"
 ASSETS_DIR = pathlib.Path(__file__).parent.resolve() / "static"
-__version__ = "1.0.0.dev0"
+__version__ = "0.1.0"
 
 
 # isort: off
