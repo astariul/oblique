@@ -14,6 +14,7 @@ reqs = [
     "omegaconf~=2.3",
     "sqlalchemy~=2.0",
     "jinjax~=0.25",
+    "requests~=2.31",
 ]
 
 extras_require = {
