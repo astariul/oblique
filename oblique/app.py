@@ -59,6 +59,12 @@ async def favicon():
     return FileResponse(ASSETS_DIR / "logo.svg")
 
 
+@router.get("/tailwind.css", include_in_schema=False)
+async def tailwind():
+    """TailwindCSS."""
+    return FileResponse(ASSETS_DIR / "tailwind.css")
+
+
 @router.get("/search", response_class=HTMLResponse)
 async def search(pkg: str, db: Session = Depends(get_db), h: None = Depends(htmx)):
     """Search route, to display the search results."""
