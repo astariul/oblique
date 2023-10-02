@@ -9,6 +9,9 @@ __pycache__/
 # Coverage output
 .coverage
 
+# CSS files (should be generated from Tailwind, not stored in repository)
+*.css
+
 # DB
 *.sql
 
