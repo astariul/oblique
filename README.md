@@ -48,6 +48,15 @@ cd oblique
 pip install -e .
 ```
 
+---
+
+You also need to build Tailwind CSS file :
+
+```bash
+pip install pytailwindcss
+tailwindcss -o oblique/static/tailwind.css --minify
+```
+
 
 <h2 align="center">Usage</h2>
 
