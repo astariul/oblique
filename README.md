@@ -1,6 +1,6 @@
 <h1 align="center">oblique</h1>
 <p align="center">
-Python Template repository
+A template for building your webapp with Python
 </p>
 
 <p align="center">
@@ -9,10 +9,6 @@ Python Template repository
     <a href="https://github.com/astariul/oblique/actions/workflows/lint.yaml"><img src="https://github.com/astariul/oblique/actions/workflows/lint.yaml/badge.svg" alt="Lint status" /></a>
     <img src=".github/badges/coverage.svg" alt="Coverage status" />
     <a href="https://astariul.github.io/oblique"><img src="https://img.shields.io/website?down_message=failing&label=docs&up_color=green&up_message=passing&url=https%3A%2F%2Fastariul.github.io%2Foblique" alt="Docs" /></a>
-    <br>
-    <a href="https://github.com/psf/black"><img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="black" /></a>
-    <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json" alt="ruff" /></a>
-    <a href="https://github.com/pre-commit/pre-commit"><img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white" alt="pre-commit"></a>
     <a href="https://github.com/astariul/oblique/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="licence" /></a>
 </p>
 
@@ -21,7 +17,6 @@ Python Template repository
   <a href="#install">Install</a> •
   <a href="#usage">Usage</a> •
   <a href="#use-this-template">Use this template</a> •
-  <a href="#faq">FAQ</a> •
   <a href="#contribute">Contribute</a>
   <br>
   <a href="https://astariul.github.io/oblique/" target="_blank">Documentation</a>
@@ -30,32 +25,21 @@ Python Template repository
 
 <h2 align="center">Description</h2>
 
-**`oblique`** stands for **Py**thon **te**mplate **re**pository.
+**`oblique`** is a template repository for building your web application with FastAPI and HTMX.
 
-It's just a template repository for python, with the following features :
+Here is the list of tools used in this template :
 
-* 📚 Beautiful documentation with [Material for Mkdocs](https://squidfunk.github.io/mkdocs-material/), published as a Github page with [mike](https://github.com/jimporter/mike) automatically
-* ✨ Modern code style checks with [black](https://github.com/psf/black) and [ruff](https://github.com/astral-sh/ruff)
-* 🅿️ Easy development with [pre-commit hooks](https://pre-commit.com/)
-* ✅ Tests with [pytest](https://docs.pytest.org/) and coverage without external tools
-* :octocat: CI with [Github actions](https://github.com/features/actions)
-* 📝 Issues & PR templates
-* 🤖 Stale bot & Dependabot
-* 🚀 Releases automatically published to PyPi
+* **`FastAPI`** for the web API
+* **`HTMX`** to have interactivity without JS
+* **`JinjaX`** for clean server-side components
+* **`TailwindCSS`** for component's design
+* **`SQLite`**, **`sqlalchemy`**, and **`alembic`** for the database
+* **`Docker`** of course
 
 
 <h2 align="center">Install</h2>
 
-Install `oblique` by running :
-
-
-```
-pip install oblique
-```
-
----
-
-For development, you can install it locally by first cloning the repository :
+Install `oblique` with :
 
 ```
 git clone https://github.com/astariul/oblique.git
@@ -66,14 +50,15 @@ pip install -e .
 
 <h2 align="center">Usage</h2>
 
-`oblique` does not contain any useful code because it's a template repository.  
-But you can check if the package is correctly installed with :
+This template is a simplistic web-application that retrieve some statistics from the PyPi API and display it to the user.
 
-```python
-from oblique import is_odd
+Just for demonstration purpose, you can check if the package is correctly installed by running :
 
-print(is_odd(2))  # False
+```bash
+oblique
 ```
+
+You can then navigate to [http://0.0.0.0:9810/](http://0.0.0.0:9810/) and try the application.
 
 
 <h2 align="center">Use this template</h2>
@@ -86,25 +71,9 @@ To use this template, click the button "Use this template" :
 
 It will prompt you to create a new Github repository.
 
-Then replace the content  in your freshly created repository, with your own package name, own code, and update the links to point to your own repository.  
-More details in the [documentation](https://astariul.github.io/oblique/latest/usage/).
+Then replace the content in your freshly created repository, with your own code.  
+Check the exhaustive list of things to change in the [documentation](https://astariul.github.io/oblique/latest/usage/).
 
-
-<h2 align="center">FAQ</h2>
-
-#### ❓ **Why creating yet another template, there is already plenty on the internet ?**
-
-True, but I couldn't find one that entirely satisfies my needs and uses
-the tools I want.
-
-For example, a lot of templates use **Sphinx** for the documentation, but I'm much more comfortable with **MkDocs**. Or the test coverage was provided by an external tool, but I wanted everything in Github. Etc...  
-Hence the creation of this repository.
-
-#### ❓ **Can I use this template for a private repository ?**
-
-Absolutely !
-
-But some things might not work (for example the release badge), and you might want to remove some features (like automatically pushing to PyPi, or publishing the documentation to Github page)
 
 <h2 align="center">Contribute</h2>
 
@@ -147,6 +116,14 @@ pytest
 Tests are not included in the pre-commit hooks, because running the tests might be slow, and for the sake of developpers we want the pre-commit hooks to be fast !
 
 Pre-commit hooks will not run the tests, but it will automatically update the coverage badge !
+
+If you want to get the coverage report in HTML format, run :
+
+```bash
+pytest --cov-report=html
+```
+
+And then open the file `htmlcov/index.html` with your browser.
 
 ### Documentation
 
