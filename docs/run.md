@@ -61,8 +61,8 @@ pip install -e .
 OBLIQUE_DB_PATH="~/data/oblique.sql" oblique
 ```
 
-!!! info
-    Note that if you use the command line instead of Docker, you need to build TailwindCSS yourself. You can do this by running :
+!!! warning "Important"
+    If you use the command line instead of Docker, you need to build TailwindCSS yourself. You can do this by running :
 
     ```bash
     pip install pytailwindcss
