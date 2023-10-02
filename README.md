@@ -17,6 +17,7 @@ A template for building your webapp with Python
   <a href="#install">Install</a> •
   <a href="#usage">Usage</a> •
   <a href="#use-this-template">Use this template</a> •
+  <a href="#docker">Docker</a> •
   <a href="#contribute">Contribute</a>
   <br>
   <a href="https://astariul.github.io/oblique/" target="_blank">Documentation</a>
@@ -73,6 +74,33 @@ It will prompt you to create a new Github repository.
 
 Then replace the content in your freshly created repository, with your own code.  
 Check the exhaustive list of things to change in the [documentation](https://astariul.github.io/oblique/latest/usage/).
+
+
+<h2 align="center">Docker</h2>
+
+`oblique` provides a Dockerfile, so it's super easy to run.
+
+First, clone the repository :
+
+```bash
+git clone https://github.com/astariul/oblique.git
+cd clothion
+```
+
+Then create the database with alembic :
+
+```bash
+mkdir ~/data
+pip install alembic
+OBLIQUE_DB_PATH="~/data/oblique.sql" alembic upgrade head
+```
+
+And finally build the Docker image and run it :
+
+```bash
+docker build -t oblique .
+docker run -p 9810:9810 -v ~/data:/oblique/data -e OBLIQUE_DB_PATH="/oblique/data/oblique.sql" oblique
+```
 
 
 <h2 align="center">Contribute</h2>
