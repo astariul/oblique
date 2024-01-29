@@ -1,4 +1,5 @@
 """Main file, containing the FastAPI web-app definition and its routes."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse
 from jinjax import Catalog

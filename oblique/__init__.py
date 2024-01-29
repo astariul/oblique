@@ -1,4 +1,5 @@
 """Root of the `oblique` package."""
+
 import pathlib
 
 

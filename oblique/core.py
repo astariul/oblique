@@ -1,4 +1,5 @@
 """File containing all the business logic, to be used by the API and the web-app."""
+
 from datetime import datetime, timedelta
 from typing import List, Tuple
 
