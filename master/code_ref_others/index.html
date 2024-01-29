@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../assets/slash.svg">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.6">
     
     
       
@@ -591,7 +591,7 @@
           <li class="md-nav__item">
   <a href="#oblique.dependencies.get_db" class="md-nav__link">
     <span class="md-ellipsis">
-      get_db()
+      get_db
     </span>
   </a>
   
@@ -615,7 +615,7 @@
           <li class="md-nav__item">
   <a href="#oblique.server.get_main_app" class="md-nav__link">
     <span class="md-ellipsis">
-      get_main_app()
+      get_main_app
     </span>
   </a>
   
@@ -624,7 +624,7 @@
           <li class="md-nav__item">
   <a href="#oblique.server.run" class="md-nav__link">
     <span class="md-ellipsis">
-      run()
+      run
     </span>
   </a>
   
@@ -771,7 +771,7 @@
           <li class="md-nav__item">
   <a href="#oblique.dependencies.get_db" class="md-nav__link">
     <span class="md-ellipsis">
-      get_db()
+      get_db
     </span>
   </a>
   
@@ -795,7 +795,7 @@
           <li class="md-nav__item">
   <a href="#oblique.server.get_main_app" class="md-nav__link">
     <span class="md-ellipsis">
-      get_main_app()
+      get_main_app
     </span>
   </a>
   
@@ -804,7 +804,7 @@
           <li class="md-nav__item">
   <a href="#oblique.server.run" class="md-nav__link">
     <span class="md-ellipsis">
-      run()
+      run
     </span>
   </a>
   
@@ -903,7 +903,6 @@
 
 
 
-
 <h3 id="oblique.configuration.DefaultConfig" class="doc doc-heading">
           <code>DefaultConfig</code>
 
@@ -922,8 +921,7 @@
 
             <details class="quote">
               <summary>Source code in <code>oblique/configuration.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
-<span class="normal">20</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
@@ -933,7 +931,8 @@
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">DefaultConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Default configuration, with sensible defaults whenever possible.&quot;&quot;&quot;</span>
 
@@ -966,6 +965,7 @@
 
   </div>
 
+
 </div>
 
 
@@ -978,6 +978,7 @@
 </div>
 
 <div class="doc doc-object doc-attribute">
+
 
 
 
@@ -1011,7 +1012,6 @@
 
 
 <div class="doc doc-object doc-function">
-
 
 
 
@@ -1051,8 +1051,7 @@
 
           <details class="quote">
             <summary>Source code in <code>oblique/dependencies.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 5</span>
-<span class="normal"> 6</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
@@ -1061,7 +1060,8 @@
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_db</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">SessionLocal</span><span class="p">:</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_db</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">SessionLocal</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;FastAPI dependency to create a DB Session.</span>
 
 <span class="sd">    Yields:</span>
@@ -1113,7 +1113,6 @@
 
 
 
-
 <h3 id="oblique.server.get_main_app" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">get_main_app</span><span class="p">()</span></code>
 
@@ -1126,8 +1125,7 @@
 
           <details class="quote">
             <summary>Source code in <code>oblique/server.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
-<span class="normal">14</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -1136,7 +1134,8 @@
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_main_app</span><span class="p">():</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_main_app</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create the main FastAPI app, which is made of the web-app and the API.&quot;&quot;&quot;</span>
     <span class="n">main_app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Oblique&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">__version__</span><span class="p">,</span> <span class="n">redoc_url</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
@@ -1158,7 +1157,6 @@
 
 
 
-
 <h3 id="oblique.server.run" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">run</span><span class="p">()</span></code>
 
@@ -1173,8 +1171,7 @@ it will ensure the tables are created.</p>
 
           <details class="quote">
             <summary>Source code in <code>oblique/server.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
-<span class="normal">27</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
@@ -1183,7 +1180,8 @@ it will ensure the tables are created.</p>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The function called to run the server.</span>
 
 <span class="sd">    It will simply run the FastAPI app. Also, if the selected DB is in-memory,</span>
@@ -1215,6 +1213,7 @@ it will ensure the tables are created.</p>
 
 
 
+
 <a id="oblique.COMPONENTS_DIR"></a>
   <div class="doc doc-contents first">
   </div>
@@ -1225,6 +1224,7 @@ it will ensure the tables are created.</p>
 
 
 
+
 <a id="oblique.ASSETS_DIR"></a>
   <div class="doc doc-contents first">
   </div>
@@ -1232,6 +1232,7 @@ it will ensure the tables are created.</p>
 </div>
 
 <div class="doc doc-object doc-attribute">
+
 
 
 
@@ -1281,10 +1282,10 @@ it will ensure the tables are created.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      <script src="../assets/javascripts/bundle.e1c3ead8.min.js"></script>
       
     
   </body>
