@@ -1,4 +1,5 @@
 """File containing the main function, serving the app."""
+
 import uvicorn
 from fastapi import FastAPI
 

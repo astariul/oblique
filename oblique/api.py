@@ -1,4 +1,5 @@
 """File containing the routes of the API."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.exception_handlers import http_exception_handler
 from pydantic import BaseModel

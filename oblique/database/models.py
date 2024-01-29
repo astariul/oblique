@@ -1,4 +1,5 @@
 """Declaration of the DB model."""
+
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 

@@ -1,4 +1,5 @@
 """CRUD functions to interact with the DB."""
+
 from datetime import datetime
 from typing import List, Tuple
 

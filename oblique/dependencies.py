@@ -1,4 +1,5 @@
 """Dependencies used in both the web-app and the API."""
+
 from oblique.database import SessionLocal
 
 
